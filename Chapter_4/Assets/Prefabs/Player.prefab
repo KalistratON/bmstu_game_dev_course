@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43afddf7746bf1e4a834c2cfbdc85c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBaseWeaponPrefab: {fileID: -2984788030665778304, guid: ddf90b39b4e8df940842afeb98bf89da, type: 3}
+  myBaseWeaponPrefab: {fileID: -2984788030665778304, guid: 39c0809d2c51c034b8ced034bf9fd0b2, type: 3}
   myHand: {fileID: 2266197120587314373}
-  myHealth: 2
+  myHealth: 5
 --- !u!114 &1539096669705059628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3447da1805cf02b46b45615d6baa3ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myEnemyLayerName: Enemy
 --- !u!1 &3407877451601490882
 GameObject:
   m_ObjectHideFlags: 0
