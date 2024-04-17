@@ -7,6 +7,7 @@ namespace LearnGame.Movement
     {
         private UnityEngine.Camera myCamera;
         public Vector3 MovementDirection { get; private set; }
+        public bool IsRunning { get; private set; }
         // Use this for initialization
 
 
@@ -25,6 +26,8 @@ namespace LearnGame.Movement
         {
             var hor = Input.GetAxis("Horizontal");  
             var ver = Input.GetAxis("Vertical");
+
+            IsRunning = Input.GetKey(KeyCode.Space);
 
             var direction = new Vector3(hor, 0, ver);
             direction = myCamera.transform.rotation * direction;

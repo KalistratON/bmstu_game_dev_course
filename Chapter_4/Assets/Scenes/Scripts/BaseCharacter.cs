@@ -48,6 +48,7 @@ namespace LearnGame {
             }
             myCharacterMovementController.MovementDirection = direction;
             myCharacterMovementController.LookDirection = LookDirection;
+            myCharacterMovementController.IsRunning = myIMovementDirSource.IsRunning;
 
             if (myHealth <= 0)
             {

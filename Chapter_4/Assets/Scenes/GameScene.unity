@@ -450,6 +450,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8838348233939481110, guid: c85fcf40cebc59247b157e08d4a382a8, type: 3}
+      propertyPath: myEnemyLayerName
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 674940075161725638, guid: c85fcf40cebc59247b157e08d4a382a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.27
@@ -496,7 +500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5680004319539873989, guid: c85fcf40cebc59247b157e08d4a382a8, type: 3}
       propertyPath: myHealth
-      value: 100
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -514,6 +518,10 @@ PrefabInstance:
     - target: {fileID: 1539096669705059628, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
       propertyPath: mySpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539096669705059628, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
+      propertyPath: myRunMultiplier
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 1994900756346328481, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -572,9 +580,17 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7643251479640468585, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
+      propertyPath: myHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643251479640468585, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
       propertyPath: myBaseWeaponPrefab
       value: 
-      objectReference: {fileID: -2984788030665778304, guid: ddf90b39b4e8df940842afeb98bf89da, type: 3}
+      objectReference: {fileID: -2984788030665778304, guid: 39c0809d2c51c034b8ced034bf9fd0b2, type: 3}
+    - target: {fileID: 9184844556411362046, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
+      propertyPath: myEnemyLayerName
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

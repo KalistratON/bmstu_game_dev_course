@@ -10,10 +10,13 @@ namespace LearnGame.Movement {
         [SerializeField]
         private float mySpeed = 1f;
         [SerializeField]
+        private float myRunMultiplier = 2f;
+        [SerializeField]
         private float myRollSpeed = 1f;
 
         public Vector3 MovementDirection { get; set; }
         public Vector3 LookDirection { get; set; }
+        public bool IsRunning { get; set; }
 
         private CharacterController myCharacterController;
 
@@ -40,7 +43,11 @@ namespace LearnGame.Movement {
 
         private void Translate()
         {
-            var delta = MovementDirection * mySpeed * Time.deltaTime;
+            var delta = MovementDirection * mySpeed * myRunMultiplier * Time.deltaTime;
+            if (IsRunning)
+            {
+                delta *= myRunMultiplier;
+            }
             myCharacterController.Move(delta);
         }
 
