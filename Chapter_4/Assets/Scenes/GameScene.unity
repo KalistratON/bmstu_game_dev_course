@@ -223,7 +223,7 @@ Transform:
   m_GameObject: {fileID: 424559841}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.32, y: 0, z: 0.2}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -431,6 +431,128 @@ MonoBehaviour:
   myFollowCameraOffset: {x: 10, y: 2, z: 0}
   myRollCameraOffset: {x: 2, y: 0, z: 0}
   myPlayer: {fileID: 2084305008}
+--- !u!1001 &1310579958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685975661671398872, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_Name
+      value: SniperRifleSpawner (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947285959552493934, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: mySpawnMaxIntervalSeconds
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+--- !u!1001 &1457171415
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 20.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685975661671398872, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_Name
+      value: SniperRifleSpawner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947285959552493934, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: mySpawnMaxIntervalSeconds
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
 --- !u!114 &2084305008 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7643251479640468585, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
@@ -442,6 +564,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43afddf7746bf1e4a834c2cfbdc85c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4539545157609332189
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1132212878728708419, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685975661671398872, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: m_Name
+      value: SniperRifleSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947285959552493934, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
+      propertyPath: mySpawnMaxIntervalSeconds
+      value: 20
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e265a58b37dda7b47af8da284e44df70, type: 3}
 --- !u!1001 &5052850556046750000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -507,6 +690,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c85fcf40cebc59247b157e08d4a382a8, type: 3}
+--- !u!1001 &7889895218294170643
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5798623001575786626, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: mySpawnIntervalSeconds
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9130486051095509449, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9151656897330189340, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
+      propertyPath: m_Name
+      value: RifleSpawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d12d1ebd585339b4fbbb57cad4767111, type: 3}
 --- !u!1001 &8608506115306574668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -586,7 +830,7 @@ PrefabInstance:
     - target: {fileID: 7643251479640468585, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
       propertyPath: myBaseWeaponPrefab
       value: 
-      objectReference: {fileID: -2984788030665778304, guid: 39c0809d2c51c034b8ced034bf9fd0b2, type: 3}
+      objectReference: {fileID: -2984788030665778304, guid: ddf90b39b4e8df940842afeb98bf89da, type: 3}
     - target: {fileID: 9184844556411362046, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
       propertyPath: myEnemyLayerName
       value: Enemy
@@ -605,3 +849,7 @@ SceneRoots:
   - {fileID: 424559845}
   - {fileID: 8608506115306574668}
   - {fileID: 5052850556046750000}
+  - {fileID: 7889895218294170643}
+  - {fileID: 4539545157609332189}
+  - {fileID: 1457171415}
+  - {fileID: 1310579958}
