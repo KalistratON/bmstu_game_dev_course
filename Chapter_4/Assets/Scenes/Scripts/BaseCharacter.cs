@@ -1,5 +1,6 @@
 using LearnGame.Movement;
 using LearnGame.Shooting;
+using LearnGame.PickUp;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine;
 namespace LearnGame {
 
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
-    public class BaseCharacter : MonoBehaviour
+    public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
         private Weapon myBaseWeaponPrefab;
@@ -23,10 +24,13 @@ namespace LearnGame {
         private CharacterMovementController myCharacterMovementController;
         private ShootingController myShootingController;
 
+        private float myBonusAccelerationTimer = 0f;
+        private float myBonusAccelerationScale = 1f;
+
         // Start is called before the first frame update
         protected void Start()
         {
-            myShootingController.SetWeapon(myBaseWeaponPrefab, myHand);
+            SetWeapon(myBaseWeaponPrefab);
         }
 
         protected void Awake()
@@ -40,6 +44,12 @@ namespace LearnGame {
         // Update is called once per frame
         protected void Update()
         {
+            myBonusAccelerationTimer -= Time.deltaTime;
+            if (myBonusAccelerationTimer < 0f)
+            {
+                myBonusAccelerationScale = 1f;
+            }
+            myCharacterMovementController.BonusMultiplier = myBonusAccelerationScale;
             var direction = myIMovementDirSource.MovementDirection;
             var LookDirection = direction;
             if (myShootingController.HasTarget)
@@ -64,7 +74,32 @@ namespace LearnGame {
                 myHealth -= bullet.Damage;
                 Destroy(other.gameObject);
             }
+            else if (LayerUtils.IsPickUp(other.gameObject))
+            {
+                if (other.gameObject.GetComponent<PickUpWeapon>())
+                {
+                    var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
+                    pickUp.PickUp(this);
+                }
+                else if (other.gameObject.GetComponent<PickUpAcceleration>())
+                {
+                    var pickUp = other.gameObject.GetComponent<PickUpAcceleration>();
+                    pickUp.PickUp(this);
+                }
+                Destroy(other.gameObject);
+            }
         }
+
+        public void SetWeapon(Weapon weapon)
+        {
+            myShootingController.SetWeapon(weapon, myHand);
+        }
+
+        public void SetBonusAcceleration (float scale, float seconds)
+        {
+            myBonusAccelerationTimer = seconds;
+            myBonusAccelerationScale = scale;
+    }
     }
 
 }

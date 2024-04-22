@@ -17,6 +17,7 @@ namespace LearnGame.Movement {
         public Vector3 MovementDirection { get; set; }
         public Vector3 LookDirection { get; set; }
         public bool IsRunning { get; set; }
+        public float BonusMultiplier { get; set; }
 
         private CharacterController myCharacterController;
 
@@ -43,7 +44,7 @@ namespace LearnGame.Movement {
 
         private void Translate()
         {
-            var delta = MovementDirection * mySpeed * myRunMultiplier * Time.deltaTime;
+            var delta = MovementDirection * mySpeed * myRunMultiplier * BonusMultiplier * Time.deltaTime;
             if (IsRunning)
             {
                 delta *= myRunMultiplier;
