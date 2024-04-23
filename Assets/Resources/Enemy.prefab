@@ -43,10 +43,11 @@ GameObject:
   - component: {fileID: 3079385331816658346}
   - component: {fileID: 4193975880058439117}
   - component: {fileID: 6116525511930751768}
-  - component: {fileID: 7354410852974475296}
   - component: {fileID: 3477596032521348593}
   - component: {fileID: -8838348233939481110}
   - component: {fileID: 5680004319539873989}
+  - component: {fileID: 7284158996133849139}
+  - component: {fileID: 6140807011311927117}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -147,18 +148,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7354410852974475296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2784777564212190500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df7ed84fa317eb247bc275b70f37af5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3477596032521348593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +191,31 @@ MonoBehaviour:
   myBaseWeaponPrefab: {fileID: -2984788030665778304, guid: ddf90b39b4e8df940842afeb98bf89da, type: 3}
   myHand: {fileID: 1414469246296982122}
   myHealth: 1
+--- !u!114 &7284158996133849139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784777564212190500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93db4a37e12e16042ab5d92f1a6e71b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6140807011311927117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784777564212190500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6eb62f8ee7568488477e0200b6dfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myViewRadius: 20
 --- !u!1 &8890021338653789957
 GameObject:
   m_ObjectHideFlags: 0

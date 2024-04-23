@@ -8,6 +8,7 @@ namespace LearnGame.Movement
     {
         public Vector3 MovementDirection { get; private set; }
         public bool IsRunning { get; private set; }
+        public bool IsRetreating { get; private set; } = false;
 
         protected void Awake()
         {

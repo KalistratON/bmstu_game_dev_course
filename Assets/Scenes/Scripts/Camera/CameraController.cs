@@ -10,29 +10,23 @@ namespace LearnGame.Camera
         [SerializeField]
         private Vector3 myRollCameraOffset = Vector3.zero;
 
-        [SerializeField]
-        private PlayerCharacter myPlayer;
+        public PlayerCharacter Player { get; set; }
 
         protected private void Awake()
         {
-            if (myPlayer == null)
-            {
-                throw new NullReferenceException($"Can't follow null player");
-            }
         }
 
         protected void LateUpdate()
         {
-            if (!myPlayer)
+            if (!Player)
             {
                 return;
             }
 
             Vector3 targetRoll = myRollCameraOffset - myFollowCameraOffset;
-            transform.position = myPlayer.transform.position + myFollowCameraOffset;
+            transform.position = Player.transform.position + myFollowCameraOffset;
             transform.rotation = Quaternion.LookRotation(
                 targetRoll, Vector3.up);
-
         }
     }
 }

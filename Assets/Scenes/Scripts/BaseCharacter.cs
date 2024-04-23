@@ -1,9 +1,11 @@
 using LearnGame.Movement;
 using LearnGame.Shooting;
 using LearnGame.PickUp;
+using LearnGame.Enemy;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 namespace LearnGame {
 
@@ -16,13 +18,14 @@ namespace LearnGame {
         [SerializeField]
         private Transform myHand;
 
-        [SerializeField]
-        private float myHealth = 2f;
+        [field: SerializeField]
+        public float myHealth { get; private set; } = 2f;
 
         private IMovementDirectionSource myIMovementDirSource;
 
         private CharacterMovementController myCharacterMovementController;
         private ShootingController myShootingController;
+        public bool IsWeaponTaken { get; private set; }  = false;
 
         private float myBonusAccelerationTimer = 0f;
         private float myBonusAccelerationScale = 1f;
@@ -48,6 +51,7 @@ namespace LearnGame {
                 myBonusAccelerationScale = 1f;
             }
             myCharacterMovementController.BonusMultiplier = myBonusAccelerationScale;
+            myCharacterMovementController.IsRetreating = myIMovementDirSource.IsRetreating;
             var direction = myIMovementDirSource.MovementDirection;
             var LookDirection = direction;
             if (myShootingController.HasTarget)
@@ -78,6 +82,7 @@ namespace LearnGame {
                 {
                     var pickUp = other.gameObject.GetComponent<PickUpWeapon>();
                     pickUp.PickUp(this);
+                    IsWeaponTaken = true;
                 }
                 else if (other.gameObject.GetComponent<PickUpAcceleration>())
                 {

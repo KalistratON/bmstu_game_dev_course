@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LearnGame {
+namespace LearnGame.Enemy {
 
-    [RequireComponent(typeof(DummyDirectionController))]
+    [RequireComponent(typeof(EnemyDirectionController), typeof (EnemyAIController))]
     public class EnemyCharacter : BaseCharacter
     {
         
