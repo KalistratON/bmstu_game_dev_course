@@ -171,8 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b45c34aa09efc10479aa4cdcc5540a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySpeed: 1
-  myRollSpeed: 1
+  mySpeed: 5
+  myRunMultiplier: 2
+  myRollSpeed: 10
 --- !u!114 &-8838348233939481110
 MonoBehaviour:
   m_ObjectHideFlags: 0

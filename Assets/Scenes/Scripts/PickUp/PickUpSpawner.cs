@@ -20,13 +20,15 @@ namespace LearnGame.PickUp
         [SerializeField]
         private float mySpawnMinIntervalSeconds = 10f;
 
+        private float mySpawnIntervalSeconds;
+
         private float myCurrentSpawnTimerSeconds;
         private int myCurrentCount;
 
         // Use this for initialization
-        void Start()
+        protected void Awake()
         {
-
+            mySpawnIntervalSeconds = Random.Range(mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds);
         }
 
         // Update is called once per frame
@@ -35,7 +37,7 @@ namespace LearnGame.PickUp
             if (myCurrentCount < myMaxCount)
             {
                 myCurrentSpawnTimerSeconds += Time.deltaTime;
-                if (myCurrentSpawnTimerSeconds > Random.Range(mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds))
+                if (myCurrentSpawnTimerSeconds > mySpawnIntervalSeconds)
                 {
                     myCurrentSpawnTimerSeconds = 0f;
                     myCurrentCount++;

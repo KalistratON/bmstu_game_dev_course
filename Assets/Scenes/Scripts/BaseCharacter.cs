@@ -27,7 +27,6 @@ namespace LearnGame {
         private float myBonusAccelerationTimer = 0f;
         private float myBonusAccelerationScale = 1f;
 
-        // Start is called before the first frame update
         protected void Start()
         {
             SetWeapon(myBaseWeaponPrefab);
@@ -41,7 +40,6 @@ namespace LearnGame {
             myShootingController = GetComponent<ShootingController>();
         }
 
-        // Update is called once per frame
         protected void Update()
         {
             myBonusAccelerationTimer -= Time.deltaTime;

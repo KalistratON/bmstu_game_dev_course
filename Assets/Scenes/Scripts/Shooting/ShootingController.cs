@@ -17,12 +17,6 @@ namespace LearnGame.Shooting {
         [SerializeField]
         private string myEnemyLayerName;
 
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         protected void Update()
         {
 

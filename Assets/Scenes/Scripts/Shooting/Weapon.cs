@@ -34,17 +34,5 @@ namespace LearnGame.Shooting
 
             bullet.Initialize(target, myBulletMaxDistance, myBulletSpeed, myDamage);
         }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

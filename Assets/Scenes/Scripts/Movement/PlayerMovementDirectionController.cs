@@ -8,20 +8,12 @@ namespace LearnGame.Movement
         private UnityEngine.Camera myCamera;
         public Vector3 MovementDirection { get; private set; }
         public bool IsRunning { get; private set; }
-        // Use this for initialization
-
 
         protected void Awake()
         {
             myCamera = UnityEngine.Camera.main;
         }
 
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         protected void Update()
         {
             var hor = Input.GetAxis("Horizontal");  

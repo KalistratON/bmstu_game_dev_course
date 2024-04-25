@@ -15,17 +15,5 @@ namespace LearnGame.PickUp
             base.PickUp(character);
             character.SetBonusAcceleration(acceleration.Scale, acceleration.Seconds);
         }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

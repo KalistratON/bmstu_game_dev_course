@@ -26,13 +26,6 @@ namespace LearnGame.Movement {
             myCharacterController = GetComponent<CharacterController>();
         }
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         void Update()
         {
             Translate();
@@ -44,7 +37,7 @@ namespace LearnGame.Movement {
 
         private void Translate()
         {
-            var delta = MovementDirection * mySpeed * myRunMultiplier * BonusMultiplier * Time.deltaTime;
+            var delta = MovementDirection * mySpeed * BonusMultiplier * Time.deltaTime;
             if (IsRunning)
             {
                 delta *= myRunMultiplier;

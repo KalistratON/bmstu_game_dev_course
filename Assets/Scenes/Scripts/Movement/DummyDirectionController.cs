@@ -14,17 +14,5 @@ namespace LearnGame.Movement
             MovementDirection = Vector3.zero;
             IsRunning = false;
         }
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
     }
 }

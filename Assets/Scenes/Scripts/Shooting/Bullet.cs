@@ -22,13 +22,6 @@ namespace LearnGame.Shooting
             Damage = theDamage;
         }
 
-        // Start is called before the first frame update
-        protected void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         protected void Update()
         {
             var delta = mySpeed * Time.deltaTime;

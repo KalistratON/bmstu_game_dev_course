@@ -21,15 +21,13 @@ namespace LearnGame.Camera
             }
         }
 
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
         protected void LateUpdate()
         {
+            if (!myPlayer)
+            {
+                return;
+            }
+
             Vector3 targetRoll = myRollCameraOffset - myFollowCameraOffset;
             transform.position = myPlayer.transform.position + myFollowCameraOffset;
             transform.rotation = Quaternion.LookRotation(
