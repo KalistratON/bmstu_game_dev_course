@@ -18,6 +18,9 @@ namespace LearnGame {
         [SerializeField]
         private Transform myHand;
 
+        [SerializeField]
+        Animator myAnimator;
+
         [field: SerializeField]
         public float myHealth { get; private set; } = 2f;
 
@@ -45,6 +48,15 @@ namespace LearnGame {
 
         protected virtual void Update()
         {
+            if (!myCharacterMovementController)
+            {
+                if (myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9999999)
+                {
+                    Destroy(gameObject);
+                }
+                return;
+            }
+
             myBonusAccelerationTimer -= Time.deltaTime;
             if (myBonusAccelerationTimer < 0f)
             {
@@ -61,9 +73,16 @@ namespace LearnGame {
             myCharacterMovementController.LookDirection = LookDirection;
             myCharacterMovementController.IsRunning = myIMovementDirSource.IsRunning;
 
+            myAnimator.SetBool("IsMoving", direction != Vector3.zero);
+            myAnimator.SetBool("IsShooting", myShootingController.HasTarget);
+
             if (myHealth <= 0)
             {
-                Destroy(gameObject);
+                if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Demise"))
+                {
+                    myAnimator.SetTrigger("Dead");
+                    myCharacterMovementController = null;
+                }
             }
         }
 
