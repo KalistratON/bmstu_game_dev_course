@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace LearnGame {
 
-    [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController))]
+    [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController), typeof(Animator))]
     public abstract class BaseCharacter : MonoBehaviour
     {
         [SerializeField]
@@ -18,14 +18,12 @@ namespace LearnGame {
         [SerializeField]
         private Transform myHand;
 
-        [SerializeField]
-        Animator myAnimator;
-
         [field: SerializeField]
         public float myHealth { get; private set; } = 2f;
 
         protected IMovementDirectionSource myIMovementDirSource;
 
+        Animator myAnimator;
         protected CharacterMovementController myCharacterMovementController;
         private ShootingController myShootingController;
         public bool IsWeaponTaken { get; private set; }  = false;
@@ -42,18 +40,21 @@ namespace LearnGame {
         {
             myIMovementDirSource = GetComponent<IMovementDirectionSource>();
 
+            myAnimator = GetComponent<Animator>();
             myCharacterMovementController = GetComponent<CharacterMovementController>();
             myShootingController = GetComponent<ShootingController>();
         }
 
         protected virtual void Update()
         {
-            if (!myCharacterMovementController)
+            if (myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Demise"))
             {
                 if (myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9999999)
                 {
                     Destroy(gameObject);
                 }
+                return;
+            } else if (!myCharacterMovementController) {
                 return;
             }
 
@@ -81,6 +82,7 @@ namespace LearnGame {
                 if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Demise"))
                 {
                     myAnimator.SetTrigger("Dead");
+                    myCharacterMovementController.SpeedMultiplier = 0.0f;
                     myCharacterMovementController = null;
                 }
             }
