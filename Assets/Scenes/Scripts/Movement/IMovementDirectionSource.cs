@@ -7,6 +7,5 @@ namespace LearnGame.Movement
     {
         Vector3 MovementDirection { get; }
         bool IsRunning { get; }
-        bool IsRetreating { get; }
     }
 }

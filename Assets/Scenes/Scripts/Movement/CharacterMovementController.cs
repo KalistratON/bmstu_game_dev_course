@@ -13,14 +13,12 @@ namespace LearnGame.Movement {
         private float myRunMultiplier = 2f;
         [SerializeField]
         private float myRollSpeed = 1f;
-        [SerializeField]
-        private float myRetreatSpeed = 0.1f;
 
         public Vector3 MovementDirection { get; set; }
         public Vector3 LookDirection { get; set; }
         public bool IsRunning { get; set; }
-        public bool IsRetreating { get; set; }
-        public float BonusMultiplier { get; set; }
+        public float SpeedMultiplier { get; set; } = 1.0f;
+        public float SpeedAddition { get; set; } = 0.0f;
 
         private CharacterController myCharacterController;
 
@@ -40,15 +38,12 @@ namespace LearnGame.Movement {
 
         private void Translate()
         {
-            var delta = MovementDirection * mySpeed * BonusMultiplier * Time.deltaTime;
+            var delta = MovementDirection * mySpeed * SpeedMultiplier * Time.deltaTime;
             if (IsRunning)
             {
                 delta *= myRunMultiplier;
             }
-            if (IsRetreating)
-            {
-                delta += MovementDirection * myRetreatSpeed * Time.deltaTime;
-            }
+            delta += MovementDirection * SpeedAddition * Time.deltaTime;
             myCharacterController.Move(delta);
         }
 

@@ -6,10 +6,18 @@ using UnityEngine;
 
 namespace LearnGame.Enemy {
 
-    [RequireComponent(typeof(EnemyDirectionController), typeof (EnemyAIController))]
+    [RequireComponent(typeof(EnemyDirectionController), typeof(EnemyAIController))]
     public class EnemyCharacter : BaseCharacter
     {
-        
+        [SerializeField]
+        private float myRetreatSpeed = 0.1f;
+
+        protected override void Update()
+        {
+            myCharacterMovementController.SpeedAddition = (myIMovementDirSource as EnemyDirectionController).IsRetreating 
+                                                          ? myRetreatSpeed : 0.0f;
+            base.Update();
+        }
     }
 
 }

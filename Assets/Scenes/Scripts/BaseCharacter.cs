@@ -21,9 +21,9 @@ namespace LearnGame {
         [field: SerializeField]
         public float myHealth { get; private set; } = 2f;
 
-        private IMovementDirectionSource myIMovementDirSource;
+        protected IMovementDirectionSource myIMovementDirSource;
 
-        private CharacterMovementController myCharacterMovementController;
+        protected CharacterMovementController myCharacterMovementController;
         private ShootingController myShootingController;
         public bool IsWeaponTaken { get; private set; }  = false;
 
@@ -43,15 +43,14 @@ namespace LearnGame {
             myShootingController = GetComponent<ShootingController>();
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             myBonusAccelerationTimer -= Time.deltaTime;
             if (myBonusAccelerationTimer < 0f)
             {
                 myBonusAccelerationScale = 1f;
             }
-            myCharacterMovementController.BonusMultiplier = myBonusAccelerationScale;
-            myCharacterMovementController.IsRetreating = myIMovementDirSource.IsRetreating;
+            myCharacterMovementController.SpeedMultiplier = myBonusAccelerationScale;
             var direction = myIMovementDirSource.MovementDirection;
             var LookDirection = direction;
             if (myShootingController.HasTarget)

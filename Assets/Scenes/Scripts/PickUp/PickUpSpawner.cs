@@ -40,6 +40,7 @@ namespace LearnGame.PickUp
                 if (myCurrentSpawnTimerSeconds > mySpawnIntervalSeconds)
                 {
                     myCurrentSpawnTimerSeconds = 0f;
+                    mySpawnIntervalSeconds = Random.Range(mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds);
                     myCurrentCount++;
 
                     var randomPointInsideRange = Random.insideUnitCircle * myRange;

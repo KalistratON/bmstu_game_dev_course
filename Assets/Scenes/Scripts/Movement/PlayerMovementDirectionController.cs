@@ -8,8 +8,6 @@ namespace LearnGame.Movement
         private UnityEngine.Camera myCamera;
         public Vector3 MovementDirection { get; private set; }
         public bool IsRunning { get; private set; }
-        public bool IsRetreating { get; private set; } = false;
-        // Use this for initialization
 
         protected void Awake()
         {
