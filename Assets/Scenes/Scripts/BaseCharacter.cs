@@ -2,6 +2,7 @@ using LearnGame.Movement;
 using LearnGame.Shooting;
 using LearnGame.PickUp;
 using LearnGame.Enemy;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace LearnGame {
     [RequireComponent(typeof(CharacterMovementController), typeof(ShootingController), typeof(Animator))]
     public abstract class BaseCharacter : MonoBehaviour
     {
+        public event Action<BaseCharacter> Dead;
+
         [SerializeField]
         private Weapon myBaseWeaponPrefab;
 
@@ -79,6 +82,7 @@ namespace LearnGame {
 
             if (myHealth <= 0)
             {
+                Dead?.Invoke(this);
                 if (!myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Demise"))
                 {
                     myAnimator.SetTrigger("Dead");
