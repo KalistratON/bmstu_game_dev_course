@@ -32,7 +32,6 @@ namespace LearnGame
             }
             myHealthBar.fillAmount = myCharacter.myHealth / myMaxHealth;
             myHealthBar.color = Color.green * myHealthBar.fillAmount + Color.red * (1.0f - myHealthBar.fillAmount);
-            Debug.Log(myHealthBar.fillAmount);
         }
     }
 }

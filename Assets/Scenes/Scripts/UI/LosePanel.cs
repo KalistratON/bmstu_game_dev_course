@@ -9,6 +9,9 @@ namespace LearnGame
         [SerializeField]
         private GameManager myGameManager;
 
+        [SerializeField]
+        private AudioSource myAudioSource;
+
         void Start()
         {
             myGameManager.Lose += ShowPanel;
@@ -18,6 +21,7 @@ namespace LearnGame
         private void ShowPanel()
         {
             gameObject.SetActive(true);
+            myAudioSource.Play();
         }
     }
 }

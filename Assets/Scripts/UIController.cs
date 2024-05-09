@@ -45,11 +45,9 @@ public class UIController : MonoBehaviour
 
     public void ShowValueDebug(float value)
     {
-        Debug.Log(value);
     }
 
     public void ShowDataPlayerInput(string value)
     {
-        Debug.Log(value);
     }
 }
