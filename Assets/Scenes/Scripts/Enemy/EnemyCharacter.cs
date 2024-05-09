@@ -14,8 +14,11 @@ namespace LearnGame.Enemy {
 
         protected override void Update()
         {
-            myCharacterMovementController.SpeedAddition = (myIMovementDirSource as EnemyDirectionController).IsRetreating 
+            if (myCharacterMovementController)
+            {
+                myCharacterMovementController.SpeedAddition = (myIMovementDirSource as EnemyDirectionController).IsRetreating
                                                           ? myRetreatSpeed : 0.0f;
+            }
             base.Update();
         }
     }

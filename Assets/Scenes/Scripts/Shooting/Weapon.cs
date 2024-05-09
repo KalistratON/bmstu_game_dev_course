@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace LearnGame.Shooting
 {
+    [RequireComponent(typeof(AudioSource))]
     public class Weapon : MonoBehaviour
     {
         [field: SerializeField]
@@ -24,10 +25,21 @@ namespace LearnGame.Shooting
         [SerializeField]
         private Transform myBulletSpawnPos;
 
+        [SerializeField]
+        private ParticleSystem myShootParticle;
+
+        private AudioSource myAudioSource;
+
+        protected void Awake()
+        {
+            myAudioSource = GetComponent<AudioSource>();
+        }
+
         public void Shoot(Vector3 targetPoint)
         {
             var bullet = Instantiate(BulletPrefab, myBulletSpawnPos.position, Quaternion.identity);
-
+            myShootParticle.Play();
+            myAudioSource.Play();
             var target = targetPoint - myBulletSpawnPos.position;
             target.y = 0;
             target.Normalize();

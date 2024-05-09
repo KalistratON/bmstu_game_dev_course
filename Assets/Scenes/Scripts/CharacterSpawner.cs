@@ -10,13 +10,13 @@ namespace LearnGame
         [SerializeField]
         private float myRange = 2f;
 
-        private static bool IsPlayerSpawned = false;
+        public static bool IsPlayerSpawned = false;
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             var randomPointInsideRange = Random.insideUnitCircle * myRange;
-            var randomPosition = new Vector3(randomPointInsideRange.x, 1f, randomPointInsideRange.y);
+            var randomPosition = new Vector3(randomPointInsideRange.x, 0f, randomPointInsideRange.y);
             randomPosition += transform.position;
 
             float random = Random.Range(0f, 1f);
