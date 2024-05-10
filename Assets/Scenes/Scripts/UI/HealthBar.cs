@@ -8,7 +8,7 @@ namespace LearnGame
     public class HealthBar : MonoBehaviour
     {
         [SerializeField]
-        private BaseCharacter myCharacter;
+        private BaseCharacterView myCharacter;
 
         private Image myHealthBar;
         private float myMaxHealth;
@@ -19,18 +19,18 @@ namespace LearnGame
             {
                 return;
             }
-            myMaxHealth = myCharacter.myHealth;
+            myMaxHealth = myCharacter.Model.Health;
             myHealthBar = GetComponent<Image>();
             myHealthBar.fillAmount = 1.0f;
         }
 
         private void Update()
         {
-            if (!myCharacter)
+            if (myCharacter == null)
             {
                 return;
             }
-            myHealthBar.fillAmount = myCharacter.myHealth / myMaxHealth;
+            myHealthBar.fillAmount = myCharacter.Model.Health / myMaxHealth;
             myHealthBar.color = Color.green * myHealthBar.fillAmount + Color.red * (1.0f - myHealthBar.fillAmount);
         }
     }

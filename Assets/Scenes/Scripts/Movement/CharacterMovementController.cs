@@ -1,63 +1,47 @@
 ﻿using UnityEngine;
-using System.Collections;
+using LearnGame.Timer;
 
 namespace LearnGame.Movement {
 
-    [RequireComponent(typeof(CharacterController))]
-    public class CharacterMovementController : MonoBehaviour
+    public class CharacterMovementController : IMovementController
     {
-        private static readonly float SqrEpsilon = Mathf.Epsilon * Mathf.Epsilon;
-        [SerializeField]
-        private float mySpeed = 1f;
-        [SerializeField]
-        private float myRunMultiplier = 2f;
-        [SerializeField]
-        private float myRollSpeed = 1f;
+        private static readonly float mySqrEpsilon = Mathf.Epsilon * Mathf.Epsilon;
 
-        public Vector3 MovementDirection { get; set; }
-        public Vector3 LookDirection { get; set; }
-        public bool IsRunning { get; set; }
-        public float SpeedMultiplier { get; set; } = 1.0f;
-        public float SpeedAddition { get; set; } = 0.0f;
+        private readonly ITimer myTimer;
 
-        private CharacterController myCharacterController;
+        private readonly float mySpeed;
+        private readonly float myRollSpeed;
 
-        protected void Awake()
+        public CharacterMovementController (ICharacterConfig theConfig, ITimer theTimer)
         {
-            myCharacterController = GetComponent<CharacterController>();
+            mySpeed = theConfig.Speed;
+            myRollSpeed = theConfig.RollSpeed;
+
+            myTimer = theTimer;
         }
 
-        void Update()
+        public Vector3 Translate(Vector3 theMovementDirection)
         {
-            Translate();
-            if (myRollSpeed > 0f && LookDirection != Vector3.zero)
-            {
-                Rotate();
-            }
+            return theMovementDirection * mySpeed * myTimer.DeltaTime;
         }
 
-        private void Translate()
+        public Quaternion Rotate (Quaternion theCurrentRotation, Vector3 theLookDirection)
         {
-            var delta = MovementDirection * mySpeed * SpeedMultiplier * Time.deltaTime;
-            if (IsRunning)
+            if (myRollSpeed <= 0f || theLookDirection == Vector3.zero)
             {
-                delta *= myRunMultiplier;
+                return theCurrentRotation;
             }
-            delta += MovementDirection * SpeedAddition * Time.deltaTime;
-            myCharacterController.Move(delta);
-        }
 
-        private void Rotate()
-        {
-            var curLookDir = transform.rotation * Vector3.forward;
-            float sqrMagnitude = (curLookDir - LookDirection).sqrMagnitude;
-            if (sqrMagnitude > SqrEpsilon)
+            var aCurLookDir = theCurrentRotation * Vector3.forward;
+            float aSqrMagnitude = (aCurLookDir - theLookDirection).sqrMagnitude;
+            if (aSqrMagnitude > mySqrEpsilon)
             {
-                var aRotation = Quaternion.Slerp(transform.rotation,
-                                                 Quaternion.LookRotation(LookDirection, Vector3.up),
-                                                 myRollSpeed * Time.deltaTime);
-                transform.rotation = aRotation;
+                var aRotation = Quaternion.Slerp (theCurrentRotation,
+                                                  Quaternion.LookRotation (theLookDirection, Vector3.up),
+                                                  myRollSpeed * myTimer.DeltaTime);
+                return aRotation;
             }
+            return theCurrentRotation;
         }
     }
 

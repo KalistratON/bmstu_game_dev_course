@@ -15,11 +15,11 @@ namespace LearnGame
         private string myFormat;
         private int myEnemyCount;
 
-        public List<EnemyCharacter> Enemies { get; private set; }
+        public List<EnemyCharacterView> Enemies { get; private set; }
 
         private void Start()
         {
-            Enemies = FindObjectsOfType<EnemyCharacter>().ToList();
+            Enemies = FindObjectsOfType<EnemyCharacterView>().ToList();
             myEnemyCount = Enemies.Count;
             foreach (var enemy in Enemies)
             {
@@ -29,9 +29,9 @@ namespace LearnGame
             myOutputText.text = string.Format(myFormat, myEnemyCount);
         }
 
-        void OnEnemyDead(BaseCharacter sender)
+        void OnEnemyDead(BaseCharacterView theSender)
         {
-            var enemy = sender as EnemyCharacter;
+            var enemy = theSender as EnemyCharacterView;
             Enemies.Remove(enemy);
             enemy.Dead -= OnEnemyDead;
 

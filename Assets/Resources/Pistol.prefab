@@ -98,7 +98,7 @@ GameObject:
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9076906773955734143
 Transform:
   m_ObjectHideFlags: 0
@@ -640,8 +640,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2916926505155957656}
-  - component: {fileID: -2984788030665778304}
   - component: {fileID: 6370157293244071936}
+  - component: {fileID: -2460256760905998605}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -666,26 +666,6 @@ Transform:
   - {fileID: 584065740080042650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-2984788030665778304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8750479931589424585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13cfa85c6e4d4624bb0425cea77fa532, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <BulletPrefab>k__BackingField: {fileID: 3242882370975040312, guid: 2798ba9e2ad9be24085ead9f3bd7a9d4, type: 3}
-  <ShootRadius>k__BackingField: 10
-  <ShootFrequencySec>k__BackingField: 1
-  myBulletMaxDistance: 100
-  myDamage: 1
-  myBulletSpeed: 10
-  myBulletSpawnPos: {fileID: 9076906773955734143}
-  myShootParticle: {fileID: 2893061856888687096}
 --- !u!82 &6370157293244071936
 AudioSource:
   m_ObjectHideFlags: 0
@@ -782,6 +762,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2460256760905998605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750479931589424585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f89ec21dc71174d910b657cca75129, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <myBulletSpawnPos>k__BackingField: {fileID: 9076906773955734143}
+  myShootParticle: {fileID: 2893061856888687096}
+  myAudioSource: {fileID: 6370157293244071936}
+  myBulletPrefab: {fileID: 3242882370975040312, guid: 2798ba9e2ad9be24085ead9f3bd7a9d4, type: 3}
 --- !u!1001 &237751631330789865
 PrefabInstance:
   m_ObjectHideFlags: 0

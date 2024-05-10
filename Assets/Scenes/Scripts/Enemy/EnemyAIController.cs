@@ -8,30 +8,32 @@ namespace LearnGame.Enemy
     {
         [SerializeField]
         private float myViewRadius = 20f;
+        
         [SerializeField]
         private float myCriticalHealthPercent = 0.3f;
+        
         [SerializeField]
         private float myRetreatChancePercent = 0.3f;
+        
         private EnemyTarget myTarget;
         private EnemyStateMachine myStateMachine;
-        // Use this for initialization
-        protected void Awake()
+
+        protected void Start()
         {
-            var player = FindObjectOfType<PlayerCharacter>();
-            var enemyDirectionController = GetComponent<EnemyDirectionController>();
+            var aPlayer = GameManager.myInstance.Player;
+            var anEnemyDirectionController = GetComponent<EnemyDirectionController>();
 
-            var navMesher = new NavMesher(transform);
-            myTarget = new EnemyTarget(transform, player, myViewRadius, GetComponent<EnemyCharacter>().myHealth);
+            var aNavMesher = new NavMesher (transform);
+            myTarget = new EnemyTarget (
+                            transform, aPlayer, myViewRadius, GetComponent<EnemyCharacterView>().Model.Health);
 
-            myStateMachine = new EnemyStateMachine(enemyDirectionController, navMesher, myTarget, myCriticalHealthPercent, myRetreatChancePercent);
+            myStateMachine = new EnemyStateMachine(
+                                anEnemyDirectionController, aNavMesher, myTarget, myCriticalHealthPercent, myRetreatChancePercent);
         }
 
-        // Update is called once per frame
         protected void Update()
         {
-            var anEnemy = GetComponent<EnemyCharacter>();
-            myTarget.IsWeaponTaken = anEnemy.IsWeaponTaken;
-            myTarget.CurrentHealth = anEnemy.myHealth;
+            var anEnemy = GetComponent<EnemyCharacterView>();
             myTarget.FindClosest();
             myStateMachine.Update();
         }

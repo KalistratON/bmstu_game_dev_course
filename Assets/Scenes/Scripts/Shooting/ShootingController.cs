@@ -1,71 +1,46 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using LearnGame.Timer;
+
+using UnityEngine;
 
 namespace LearnGame.Shooting {
 
-    public class ShootingController : MonoBehaviour
+    public class ShootingController
     {
-        public bool HasTarget => myTarget != null;
-        public Vector3 TargetPosition => myTarget.transform.position;
+        private readonly ITimer myTimer;
+        private IShootingTarget myShootingTarget;
 
-        private Weapon myWeapon;
-
-        private Collider[] myColliders = new Collider[2];
+        private BaseCharacterModel myTarget;
+        private WeaponModel myWeapon;
         private float myNextShootTimeSec;
-        private GameObject myTarget;
 
-        [SerializeField]
-        private string myEnemyLayerName;
+        public bool HasTarget => myTarget != null;
+        public Vector3 GetTargetPosition => myTarget.Transform.Position;
 
-        protected void Update()
+        public ShootingController (ITimer theTimer, IShootingTarget theShootingTarget)
         {
-
-            myTarget = GetTarget();
-
-            myNextShootTimeSec -= Time.deltaTime;
-            if (myNextShootTimeSec < 0)
-            {
-                if (HasTarget)
-                {
-                    myWeapon.Shoot(TargetPosition);
-                }
-                myNextShootTimeSec = myWeapon.ShootFrequencySec;
-            }
+            myTimer = theTimer;
+            myShootingTarget = theShootingTarget;
         }
 
-        public void SetWeapon(Weapon weaponPrefab, Transform hand)
+        public void TryShoot (Vector3 thePosition)
         {
-            if (myWeapon != null)
+            myNextShootTimeSec -= myTimer.DeltaTime;
+            if (myNextShootTimeSec >= 0f)
             {
-                Destroy(myWeapon.gameObject);
+                return;
             }
-            myWeapon = Instantiate(weaponPrefab, hand);
-            myWeapon.transform.localPosition = Vector3.zero;
-            myWeapon.transform.localRotation = Quaternion.identity;
+
+            myTarget = myShootingTarget.GetTarget (thePosition, myWeapon.Description.ShootRadius);
+            if (HasTarget)
+            {
+                myWeapon.Shoot (thePosition, GetTargetPosition);
+            }
+            myNextShootTimeSec = myWeapon.Description.ShootFrequencySec;
         }
 
-        private GameObject GetTarget()
+        public void SetWeapon(WeaponModel theWeapon)
         {
-            GameObject target = null;
-
-            var position = myWeapon.transform.position;
-            var radius = myWeapon.ShootRadius;
-
-            var mask = LayerMask.GetMask(myEnemyLayerName); ;
-
-            var size = Physics.OverlapSphereNonAlloc(position, radius, myColliders, mask);
-            if (size > 0)
-            {
-                for (int i = 0; i < size; ++i)
-                {
-                    if (myColliders[i].gameObject != gameObject)
-                    {
-                        target = myColliders[i].gameObject;
-                        break;
-                    }
-                }
-            }
-            return target;
+            myWeapon = theWeapon;
         }
     }
 }

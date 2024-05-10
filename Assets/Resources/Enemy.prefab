@@ -742,13 +742,12 @@ GameObject:
   - component: {fileID: 3079385331816658346}
   - component: {fileID: 4193975880058439117}
   - component: {fileID: 6116525511930751768}
-  - component: {fileID: 3477596032521348593}
-  - component: {fileID: -8838348233939481110}
   - component: {fileID: 5680004319539873989}
   - component: {fileID: 7284158996133849139}
   - component: {fileID: 6140807011311927117}
   - component: {fileID: 4336735195084870245}
   - component: {fileID: -3977800268595972432}
+  - component: {fileID: -8815829258212117990}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -850,34 +849,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.92, z: 0}
---- !u!114 &3477596032521348593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2784777564212190500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b45c34aa09efc10479aa4cdcc5540a83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mySpeed: 5
-  myRunMultiplier: 2
-  myRollSpeed: 10
---- !u!114 &-8838348233939481110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2784777564212190500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3447da1805cf02b46b45615d6baa3ac3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myEnemyLayerName: Player
 --- !u!114 &5680004319539873989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -890,14 +861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3097f73f28e89e4a9bac42ecdc58c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBaseWeaponPrefab: {fileID: -2984788030665778304, guid: 39c0809d2c51c034b8ced034bf9fd0b2, type: 3}
+  myWeaponFactory: {fileID: 11400000, guid: c3924f7c72d49db40a30afa54cc0ec1c, type: 2}
   myHand: {fileID: 1414469246296982122}
-  <myHealth>k__BackingField: 1
-  myBloodParticle: {fileID: 1354178961012427149}
-  mySpiritOutParticle: {fileID: 8389888221403150345}
-  myAudioDeathScreamSource: {fileID: -3977800268595972432}
-  myAccelerationTrail: {fileID: 8204524452974387019}
-  myRetreatSpeed: 0.1
 --- !u!114 &7284158996133849139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1042,6 +1007,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-8815829258212117990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784777564212190500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cee5c44f4f48b45b52b5e31173feb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCharacterConfig: {fileID: 11400000, guid: e046513e33406c64bb8918c2eb57ad9f, type: 2}
+  myCharacterView: {fileID: 5680004319539873989}
 --- !u!1 &2849330629796337727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,11 +2180,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1936226195794356512, guid: b69040c2bd7ad9a41aacebce0bc6f3d2, type: 3}
   m_PrefabInstance: {fileID: 2375773632971978178}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &8389888221403150345 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6095252019285544395, guid: b69040c2bd7ad9a41aacebce0bc6f3d2, type: 3}
-  m_PrefabInstance: {fileID: 2375773632971978178}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2445790244196324740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2266,11 +2240,6 @@ PrefabInstance:
 --- !u!4 &1623562246699005616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3997292141361144628, guid: fb272565f39adf74eb408951745f4fcc, type: 3}
-  m_PrefabInstance: {fileID: 2445790244196324740}
-  m_PrefabAsset: {fileID: 0}
---- !u!96 &8204524452974387019 stripped
-TrailRenderer:
-  m_CorrespondingSourceObject: {fileID: 5777382480453257935, guid: fb272565f39adf74eb408951745f4fcc, type: 3}
   m_PrefabInstance: {fileID: 2445790244196324740}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2768481156769153939
@@ -2334,11 +2303,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60534ebb343cc374281440384c9fff2c, type: 3}
---- !u!198 &1354178961012427149 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3792202851130968606, guid: 60534ebb343cc374281440384c9fff2c, type: 3}
-  m_PrefabInstance: {fileID: 2768481156769153939}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4322541633595593404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2132276609394921775, guid: 60534ebb343cc374281440384c9fff2c, type: 3}

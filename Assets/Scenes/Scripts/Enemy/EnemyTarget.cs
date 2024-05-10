@@ -8,14 +8,14 @@ namespace LearnGame.Enemy
 
         private readonly Transform myAgentTransform;
         private readonly float myViewRadius;
-        private readonly PlayerCharacter myPlayer;
+        private readonly PlayerCharacterView myPlayer;
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; set; }
         public bool IsWeaponTaken { get; set; } = false;
 
         private readonly Collider[] myColliders = new Collider[10];
 
-        public EnemyTarget (Transform agent, PlayerCharacter player, float viewRadius, float maxHealth)
+        public EnemyTarget (Transform agent, PlayerCharacterView player, float viewRadius, float maxHealth)
         {
             myAgentTransform = agent;
             myPlayer = player;

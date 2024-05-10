@@ -10,11 +10,9 @@ namespace LearnGame.Camera
         [SerializeField]
         private Vector3 myRollCameraOffset = Vector3.zero;
 
-        public PlayerCharacter Player { get; set; }
 
-        protected private void Awake()
-        {
-        }
+        public PlayerCharacterView Player { get; set; }
+
 
         protected void LateUpdate()
         {

@@ -10,10 +10,9 @@ namespace LearnGame.PickUp
         [SerializeField]
         Acceleration acceleration;
 
-        public override void PickUp(BaseCharacter character)
+        public override void PickUp (BaseCharacterView character)
         {
             base.PickUp(character);
-            character.SetBonusAcceleration(acceleration.Scale, acceleration.Seconds);
         }
     }
 }
