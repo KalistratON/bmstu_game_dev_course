@@ -7,25 +7,16 @@ namespace LearnGame {
     [RequireComponent(typeof(PlayerMovementDirectionController))]
     public class PlayerCharacterView : BaseCharacterView
     {
-        private bool WereEventsSetted { get; set; } = false;
-
-
-        protected void Awake()
+        protected new void Start ()
         {
-            // base.Awake();
-            UnityEngine.Camera.main.GetComponent<CameraController>().Player = this;
-        }
+            FindAnyObjectByType<CameraController>().SetCameraSpy (this);
 
-        protected new void LateUpdate ()
-        {
-            // error when set it in Start or Initialize
-            if (!WereEventsSetted)
+            base.Start();
+
+            if (myMovementDirSource as PlayerMovementDirectionController != null)
             {
-                WereEventsSetted = true;
-                myMovementDirSource.OnRunning += Model.SetSpeedScale;
+                (myMovementDirSource as PlayerMovementDirectionController).OnRunning += Model.SetSpeedScale;
             }
-
-            base.LateUpdate();
         }
     }
 

@@ -41,7 +41,7 @@ namespace LearnGame {
 
         public BaseCharacterModel Model { get; private set; }
 
-        protected void Start()
+        protected virtual void Start()
         {
             myAnimator = GetComponent<Animator>();
             myMovementDirSource = GetComponent<IMovementDirectionSource>();
@@ -62,7 +62,7 @@ namespace LearnGame {
             Model.AnimationDirection += SetAnimationDirection;
         }
 
-        protected virtual void LateUpdate()
+        protected virtual void Update()
         {
             if (IsDeathAnimationFinished())
             {

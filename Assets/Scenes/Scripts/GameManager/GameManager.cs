@@ -29,6 +29,7 @@ namespace LearnGame {
 
         public bool IsPlayerExist => Player != null;
 
+
         private void Awake()
         {
             if (myInstance == null)
@@ -61,7 +62,7 @@ namespace LearnGame {
 
         protected void OnDestroy()
         {
-            // CharacterSpawner.OnPlayerSpawn -= InitPlayer;
+            CharacterSpawner.OnPlayerSpawn -= InitPlayer;
 
             if (Player == null)
             {

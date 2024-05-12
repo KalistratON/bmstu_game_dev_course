@@ -8,8 +8,6 @@ namespace LearnGame.Enemy
 {
     public class EnemyDirectionController : MonoBehaviour, IMovementDirectionSource
     {
-        public event Action<float> OnRunning;
-
         public Vector3 MovementDirection { get; private set; }
         public bool IsRunning { get; private set; } = false;
 

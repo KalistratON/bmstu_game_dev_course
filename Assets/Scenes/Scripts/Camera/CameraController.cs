@@ -3,16 +3,22 @@ using UnityEngine;
 
 namespace LearnGame.Camera
 {
-    public class CameraController : MonoBehaviour
+    public class CameraController : MonoBehaviour, ICameraSpy
     {
         [SerializeField]
         private Vector3 myFollowCameraOffset = Vector3.zero;
+        
         [SerializeField]
         private Vector3 myRollCameraOffset = Vector3.zero;
 
 
-        public PlayerCharacterView Player { get; set; }
+        private BaseCharacterView Player { get; set; }
 
+
+        public void SetCameraSpy (BaseCharacterView theTarget)
+        {
+            Player = theTarget;
+        }
 
         protected void LateUpdate()
         {
