@@ -5,7 +5,6 @@ using LearnGame.Timer;
 using UnityEngine;
 
 using System.Collections.Generic;
-using System.Linq;
 using System;
 
 
@@ -16,18 +15,21 @@ namespace LearnGame {
     {
         public static GameManager myInstance { get; private set; }
 
+
         public event Action Win;
         public event Action Lose;
 
-        private CharacterCompositionRoot myPlayer;
-        private List<CharacterCompositionRoot> myEnemies;
 
         public PlayerCharacterView Player { get; private set; }
         public List<EnemyCharacterView> Enemies { get; private set; }
 
+
         public TimerUIView Timer { get; private set; }
 
-        protected void Start()
+
+        public bool IsPlayerExist => Player != null;
+
+        private void Awake()
         {
             if (myInstance == null)
             {
@@ -38,26 +40,16 @@ namespace LearnGame {
                 Destroy (this);
                 return;
             }
-            ITimer aTimer = new UnityTimer();
-            myPlayer = FindObjectOfType<PlayerCharacterView>().GetComponentInChildren<CharacterCompositionRoot>();            
-            
-            Enemies = FindObjectsOfType<EnemyCharacterView>().ToList();
-            myEnemies = new List<CharacterCompositionRoot>(Enemies.Count);
-            foreach (var anEnemy in Enemies)
-            {
-                var anEnemyCompositionRoot = anEnemy.GetComponentInChildren<CharacterCompositionRoot>();
-                myEnemies.Add (anEnemyCompositionRoot);
-            }
 
-            Player = (PlayerCharacterView) myPlayer.Compose (aTimer);
-            Enemies = new List<EnemyCharacterView>(myEnemies.Count);
-            foreach (var anEnemyRoot in myEnemies)
-            {
-                Enemies.Add ((EnemyCharacterView) anEnemyRoot.Compose (aTimer));
-            }
+            CharacterSpawner.OnPlayerSpawn += InitPlayer;
+        }
+
+        protected void Start()
+        {
+            ITimer aTimer = new UnityTimer();
+            Enemies = CompositionRootFactory.InitEnemies (aTimer);
 
             Player.Dead += OnPlayerDead;
-
             foreach(var enemy in Enemies)
             {
                 enemy.Dead += OnEnemyDead;
@@ -69,6 +61,8 @@ namespace LearnGame {
 
         protected void OnDestroy()
         {
+            // CharacterSpawner.OnPlayerSpawn -= InitPlayer;
+
             if (Player == null)
             {
                 return;
@@ -86,7 +80,6 @@ namespace LearnGame {
         {
             Player.Dead -= OnPlayerDead;
             Lose?.Invoke();
-            CharacterSpawner.IsPlayerSpawned = false;
         }
 
         private void OnEnemyDead (BaseCharacterView theSender)
@@ -98,7 +91,8 @@ namespace LearnGame {
             if (Enemies.Count == 0)
             {
                 Win?.Invoke();
-                CharacterSpawner.IsPlayerSpawned = false;
+
+                Timer.myTimerUIModel.TimerEnd -= PlayerLose;
             }
         }
 
@@ -106,7 +100,12 @@ namespace LearnGame {
         {
             Timer.myTimerUIModel.TimerEnd -= PlayerLose;
             Lose?.Invoke();
-            CharacterSpawner.IsPlayerSpawned = false;
+        }
+
+        public void InitPlayer()
+        {
+            ITimer aTimer = new UnityTimer();
+            Player = CompositionRootFactory.InitPlayer (aTimer);
         }
     }
 }

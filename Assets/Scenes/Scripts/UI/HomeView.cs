@@ -22,8 +22,6 @@ namespace LearnGame.UI
         {
             (new UnityTimer()).SetTimeScale (1.0f);
 
-            CharacterSpawner.IsPlayerSpawned = false;
-
             SceneManager.LoadScene (0);
         }
     }

@@ -1,38 +1,36 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
-using LearnGame.Enemy;
+
+using System;
+
 
 namespace LearnGame
 {
     public class CharacterSpawner : MonoBehaviour
     {
+        public static event Action OnPlayerSpawn;
+
+
         [SerializeField]
         private float myRange = 2f;
 
-        public static bool IsPlayerSpawned = false;
-
         void Awake()
         {
-            var randomPointInsideRange = Random.insideUnitCircle * myRange;
+            var randomPointInsideRange = UnityEngine.Random.insideUnitCircle * myRange;
             var randomPosition = new Vector3(randomPointInsideRange.x, 0f, randomPointInsideRange.y);
             randomPosition += transform.position;
 
-            float random = Random.Range(0f, 1f);
-            if (random > 0 && !IsPlayerSpawned)
+            float random = UnityEngine.Random.Range (0f, 1f);
+            if (random > 0 && !GameManager.myInstance.IsPlayerExist)
             {
-                IsPlayerSpawned = true;
                 Instantiate (Resources.Load ("Player"), randomPosition, Quaternion.identity, transform);
+
+                OnPlayerSpawn?.Invoke();
             }
             else
             {
                 Instantiate (Resources.Load ("Enemy"), randomPosition, Quaternion.identity, transform);
             }
-        }
-
-        // Update is called once per frame
-        protected void Update()
-        {
         }
 
         protected void OnDrawGizmos()
