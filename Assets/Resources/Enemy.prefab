@@ -892,9 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df6eb62f8ee7568488477e0200b6dfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myViewRadius: 20
-  myCriticalHealthPercent: 0.3
-  myRetreatChancePercent: 0.3
+  <Description>k__BackingField: {fileID: 11400000, guid: 92239f2e3d8388548804d7be7ae215d7, type: 2}
 --- !u!95 &4336735195084870245
 Animator:
   serializedVersion: 5

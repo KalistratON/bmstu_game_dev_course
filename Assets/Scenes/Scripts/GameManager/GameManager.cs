@@ -25,7 +25,7 @@ namespace LearnGame {
         public PlayerCharacterView Player { get; private set; }
         public List<EnemyCharacterView> Enemies { get; private set; }
 
-        public TimerUI Timer { get; private set; }
+        public TimerUIView Timer { get; private set; }
 
         protected void Start()
         {
@@ -63,18 +63,23 @@ namespace LearnGame {
                 enemy.Dead += OnEnemyDead;
             }
 
-            Timer = FindObjectOfType<TimerUI>();
-            Timer.TimerEnd += PlayerLose;
+            Timer = FindObjectOfType<TimerUIView>();
+            Timer.myTimerUIModel.TimerEnd += PlayerLose;
         }
 
         protected void OnDestroy()
         {
+            if (Player == null)
+            {
+                return;
+            }
+
             Player.Dead -= OnPlayerDead;
             foreach(var enemy in Enemies)
             {
                 enemy.Dead -= OnEnemyDead;
             }
-            Timer.TimerEnd -= PlayerLose;
+            Timer.myTimerUIModel.TimerEnd -= PlayerLose;
         }
 
         private void OnPlayerDead (BaseCharacterView theSender)
@@ -82,7 +87,6 @@ namespace LearnGame {
             Player.Dead -= OnPlayerDead;
             Lose?.Invoke();
             CharacterSpawner.IsPlayerSpawned = false;
-            Time.timeScale = 0f;
         }
 
         private void OnEnemyDead (BaseCharacterView theSender)
@@ -95,15 +99,13 @@ namespace LearnGame {
             {
                 Win?.Invoke();
                 CharacterSpawner.IsPlayerSpawned = false;
-                Time.timeScale = 0f;
             }
         }
 
         private void PlayerLose()
         {
-            Timer.TimerEnd -= PlayerLose;
+            Timer.myTimerUIModel.TimerEnd -= PlayerLose;
             Lose?.Invoke();
-            Time.timeScale = 0f;
             CharacterSpawner.IsPlayerSpawned = false;
         }
     }

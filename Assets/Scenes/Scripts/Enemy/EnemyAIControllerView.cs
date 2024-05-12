@@ -1,19 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
-using LearnGame.Enemy.States;
+﻿using LearnGame.Enemy.States;
+
+using UnityEngine;
 
 namespace LearnGame.Enemy
 {
     public class EnemyAIController : MonoBehaviour
-    {
-        [SerializeField]
-        private float myViewRadius = 20f;
-        
-        [SerializeField]
-        private float myCriticalHealthPercent = 0.3f;
-        
-        [SerializeField]
-        private float myRetreatChancePercent = 0.3f;
+    {        
+        [field: SerializeField]
+        public EnemyAIDescription Description { get; set; }
         
         private EnemyTarget myTarget;
         private EnemyStateMachine myStateMachine;
@@ -25,10 +19,14 @@ namespace LearnGame.Enemy
 
             var aNavMesher = new NavMesher (transform);
             myTarget = new EnemyTarget (
-                            transform, aPlayer, myViewRadius, GetComponent<EnemyCharacterView>());
+                            transform, aPlayer, Description.ViewRadius, GetComponent<EnemyCharacterView>());
 
             myStateMachine = new EnemyStateMachine(
-                                anEnemyDirectionController, aNavMesher, myTarget, myCriticalHealthPercent, myRetreatChancePercent);
+                                anEnemyDirectionController, 
+                                aNavMesher, 
+                                myTarget, 
+                                Description.CriticalHealthPercent, 
+                                Description.RetreatChancePercent);
         }
 
         protected void Update()

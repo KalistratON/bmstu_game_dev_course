@@ -1,27 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using LearnGame.Timer;
+
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
-namespace LearnGame
+namespace LearnGame.UI
 {
-    public class Home : MonoBehaviour
+    public class HomeView : MonoBehaviour
     {
         private Button myHomeButton;
 
-        private void Start()
+        private void Awake()
         {
             myHomeButton = GetComponent<Button>();
+
             myHomeButton.onClick.RemoveAllListeners();
-            myHomeButton.onClick.AddListener(OpenMainLevel);
+            myHomeButton.onClick.AddListener (OpenMainLevel);
         }
 
         private void OpenMainLevel()
         {
-            Time.timeScale = 1f;
+            (new UnityTimer()).SetTimeScale (1.0f);
+
             CharacterSpawner.IsPlayerSpawned = false;
-            SceneManager.LoadScene(0);
+
+            SceneManager.LoadScene (0);
         }
     }
 }

@@ -1,37 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
+using LearnGame.Timer;
+
 using UnityEngine;
+
+using System;
 
 namespace LearnGame.Shooting
 {
-
-    public class Bullet : MonoBehaviour
+    public class BulletModel
     {
+        public event Action OnBulletDestoy;
+
+
+        private ITimer myTimer;
         private Vector3 myDirection;
         private float mySpeed;
         private float myMaxDistance;
         private float myCurDistance;
 
+
         public float Damage { get; private set; }
 
-        public void Initialize(Vector3 Direction, float MaxDistance, float Speed, float theDamage)
+
+        public BulletModel (Vector3 Direction, float MaxDistance, float Speed, float theDamage, ITimer theTimer)
         {
             myDirection = Direction;
             myMaxDistance = MaxDistance;
             mySpeed = Speed;
             Damage = theDamage;
+
+            myTimer = theTimer;
         }
 
-        protected void Update()
+        public Vector3 Move()
         {
-            var delta = mySpeed * Time.deltaTime;
-            myCurDistance += delta;
-            transform.Translate(myDirection * delta);
+            var aDelta = mySpeed * myTimer.DeltaTime;
+            myCurDistance += aDelta;
 
             if (myCurDistance >= myMaxDistance)
             {
-                Destroy(gameObject);
+                OnBulletDestoy?.Invoke();
             }
+
+            return myDirection * aDelta;
         }
     }
 }

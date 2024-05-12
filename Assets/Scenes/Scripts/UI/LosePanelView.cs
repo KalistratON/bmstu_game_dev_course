@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace LearnGame
+namespace LearnGame.UI
 {
-    public class LosePanel : MonoBehaviour
+    public class LosePanelView : MonoBehaviour
     {
         [SerializeField]
         private GameManager myGameManager;
@@ -15,12 +13,12 @@ namespace LearnGame
         void Start()
         {
             myGameManager.Lose += ShowPanel;
-            gameObject.SetActive(false);
+            gameObject.SetActive (false);
         }
 
         private void ShowPanel()
         {
-            gameObject.SetActive(true);
+            gameObject.SetActive (true);
             myAudioSource.Play();
         }
     }

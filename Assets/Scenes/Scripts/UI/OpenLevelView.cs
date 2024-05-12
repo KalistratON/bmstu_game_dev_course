@@ -1,12 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using LearnGame.Timer;
+
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace LearnGame
+using System.Collections.Generic;
+
+namespace LearnGame.UI
 {
-    public class OpenLevel : MonoBehaviour
+    public class OpenLevelView : MonoBehaviour
     {
         private Button myOpenLevelButton;
 
@@ -17,13 +19,13 @@ namespace LearnGame
         {
             myOpenLevelButton = GetComponent<Button>();
             myOpenLevelButton.onClick.RemoveAllListeners();
-            myOpenLevelButton.onClick.AddListener(OpenRandomLevel);
+            myOpenLevelButton.onClick.AddListener (OpenRandomLevel);
         }
 
         private void OpenRandomLevel()
         {
-            Time.timeScale = 1f;
-            int level = myLevelList[Random.Range(0, myLevelList.Count)];
+            (new UnityTimer()).SetTimeScale (1.0f);
+            int level = myLevelList [Random.Range (0, myLevelList.Count)];
             SceneManager.LoadScene(level);
         }
     }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6515bbe3c9f31b84bb212e8baa16baa9, type: 3}
   m_Name: EnemyConfig 1
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 100
+  <Health>k__BackingField: 10
   <Speed>k__BackingField: 5
   <RollSpeed>k__BackingField: 10

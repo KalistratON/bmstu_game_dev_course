@@ -18,7 +18,7 @@ namespace LearnGame.Shooting
         private AudioSource myAudioSource;
 
         [SerializeField]
-        public Bullet myBulletPrefab;
+        public BulletView myBulletPrefab;
 
         public void Initialize (WeaponModel theModel)
         {

@@ -104,12 +104,12 @@ namespace LearnGame {
         {
             if (LayerUtils.IsBullet (other.gameObject))
             {
-                var bullet = other.gameObject.GetComponent<Bullet>();
-                Model?.Damage (bullet.Damage);
+                var aBullet = other.gameObject.GetComponent<BulletView>();
+                Model?.Damage (aBullet.Model.Damage);
 
                 myBloodParticle.Play();
 
-                Destroy(other.gameObject);
+                Destroy (other.gameObject);
             }
             else if (LayerUtils.IsPickUp(other.gameObject))
             {
@@ -123,7 +123,7 @@ namespace LearnGame {
                     var pickUp = other.gameObject.GetComponent<PickUpAcceleration>();
                     pickUp.PickUp (this);
                 }
-                Destroy(other.gameObject);
+                Destroy (other.gameObject);
             }
         }
 
