@@ -1,13 +1,36 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using LearnGame.Timer;
+
+using UnityEngine;
+
+using System;
 
 namespace LearnGame.Bonus
 {
-    public class Acceleration : MonoBehaviour
+    public class Acceleration : Bonus
     {
-        [field: SerializeField]
-        public float Scale { get; private set; } = 2f;
-        [field: SerializeField]
-        public float Seconds { get; private set; } = 10f;
+        public override event Action<Bonus> OnBonusDestory;
+
+        [SerializeField]
+        public AccelerationDescription myAccelerationDescription;
+
+        public override void SetBonus (BaseCharacterView theCharacter)
+        {}
+
+        private void Awake()
+        {
+            myTimer = new UnityTimer();
+        }
+
+        private void Update()
+        {
+            myAccelerationDescription.RemainingTimeSec -= myTimer.DeltaTime;
+
+            if (myAccelerationDescription.RemainingTimeSec <= 0.0f)
+            {
+                OnBonusDestory?.Invoke (this);
+                Destroy (this);
+            }
+        }
+
     }
 }

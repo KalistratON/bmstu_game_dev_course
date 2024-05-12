@@ -15,7 +15,7 @@ MonoBehaviour:
   myWeaponPrefab: {fileID: 3751535721722831490, guid: 39c0809d2c51c034b8ced034bf9fd0b2, type: 3}
   myWeaponDescription:
     <ShootRadius>k__BackingField: 15
-    <ShootFrequencySec>k__BackingField: 0.5
-    <Damage>k__BackingField: 0.75
+    <ShootFrequencySec>k__BackingField: 0.1
+    <Damage>k__BackingField: 1
     <BulletMaxDistance>k__BackingField: 20
     <BulletSpeed>k__BackingField: 15

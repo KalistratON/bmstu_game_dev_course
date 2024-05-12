@@ -9,25 +9,26 @@ namespace LearnGame.Enemy
         private readonly Transform myAgentTransform;
         private readonly float myViewRadius;
         private readonly PlayerCharacterView myPlayer;
+        public readonly EnemyCharacterView mySelf;
         public float MaxHealth { get; private set; }
         public float CurrentHealth { get; set; }
         public bool IsWeaponTaken { get; set; } = false;
 
         private readonly Collider[] myColliders = new Collider[10];
 
-        public EnemyTarget (Transform agent, PlayerCharacterView player, float viewRadius, float maxHealth)
+        public EnemyTarget (Transform agent, PlayerCharacterView player, float viewRadius, EnemyCharacterView theEnemy)
         {
             myAgentTransform = agent;
             myPlayer = player;
             myViewRadius = viewRadius;
-            MaxHealth = maxHealth;
-            CurrentHealth = maxHealth;
+            mySelf = theEnemy;
+            CurrentHealth = MaxHealth = theEnemy.Model.Health;
         }
 
         public void FindClosest()
         {
             float minDistance = float.MaxValue;
-            var count = FindAllTargets(IsWeaponTaken ? LayerUtils.CharacterMask : LayerUtils.PickUpMask | LayerUtils.CharacterMask);
+            var count = FindAllTargets (IsWeaponTaken ? LayerUtils.CharacterMask : LayerUtils.PickUpMask | LayerUtils.CharacterMask);
 
             for (int i = 0; i < count; ++i)
             {

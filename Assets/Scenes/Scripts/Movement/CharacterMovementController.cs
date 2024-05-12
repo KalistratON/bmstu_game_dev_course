@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using LearnGame.Timer;
+﻿using LearnGame.Timer;
+
+using UnityEngine;
+
 
 namespace LearnGame.Movement {
 
@@ -12,6 +14,11 @@ namespace LearnGame.Movement {
         private readonly float mySpeed;
         private readonly float myRollSpeed;
 
+        //depending on bonus properties
+        public float SpeedScale { get; set; } = 1.0f;
+        public float SpeedAdd { get; set; } = 0.0f;
+
+
         public CharacterMovementController (ICharacterConfig theConfig, ITimer theTimer)
         {
             mySpeed = theConfig.Speed;
@@ -20,9 +27,9 @@ namespace LearnGame.Movement {
             myTimer = theTimer;
         }
 
-        public Vector3 Translate(Vector3 theMovementDirection)
+        public Vector3 Translate (Vector3 theMovementDirection)
         {
-            return theMovementDirection * mySpeed * myTimer.DeltaTime;
+            return theMovementDirection * (mySpeed + SpeedAdd) * myTimer.DeltaTime * SpeedScale;
         }
 
         public Quaternion Rotate (Quaternion theCurrentRotation, Vector3 theLookDirection)

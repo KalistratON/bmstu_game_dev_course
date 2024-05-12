@@ -18,13 +18,8 @@ namespace LearnGame.Enemy.States
             var retreatState = new RetreatState(target, enemyDirectionController);
 
             Func<bool> retreatFunc = () => {
-                if (target.CurrentHealth / target.MaxHealth > criticalPercent ||
-                    UnityEngine.Random.Range(0, 1) > retreatChancePercent)
-                {
-                    enemyDirectionController.IsRetreating = false;
-                    return false;
-                }
-                return true;
+                return target.CurrentHealth / target.MaxHealth <= criticalPercent &&
+                       UnityEngine.Random.Range(0, 1) <= retreatChancePercent;
             };
 
             SetInitialState(idleState);

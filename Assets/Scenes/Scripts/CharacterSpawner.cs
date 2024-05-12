@@ -12,7 +12,6 @@ namespace LearnGame
 
         public static bool IsPlayerSpawned = false;
 
-        // Use this for initialization
         void Awake()
         {
             var randomPointInsideRange = Random.insideUnitCircle * myRange;
@@ -23,11 +22,11 @@ namespace LearnGame
             if (random > 0 && !IsPlayerSpawned)
             {
                 IsPlayerSpawned = true;
-                Instantiate(Resources.Load("Player"), randomPosition, Quaternion.identity, transform);
+                Instantiate (Resources.Load ("Player"), randomPosition, Quaternion.identity, transform);
             }
             else
             {
-                Instantiate(Resources.Load("Enemy"), randomPosition, Quaternion.identity, transform);
+                Instantiate (Resources.Load ("Enemy"), randomPosition, Quaternion.identity, transform);
             }
         }
 

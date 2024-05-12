@@ -1,19 +1,18 @@
-﻿using LearnGame.Shooting;
+﻿using LearnGame.Bonus;
+
 using UnityEngine;
-using System.Collections;
 
 namespace LearnGame.PickUp
 {
-    public class PickUpWeapon : PickUpItem
+    public class PickUpAcceleration : PickUpItem
     {
         [SerializeField]
-        private WeaponFactory myWeaponFactory;
-
+        BonusFactory myBonusFactory;
 
         public override void PickUp (BaseCharacterView theCharacter)
         {
             base.PickUp (theCharacter);
-            theCharacter.SetWeapon (myWeaponFactory);
+            theCharacter.AddBonus (myBonusFactory);
         }
     }
 }

@@ -863,6 +863,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myWeaponFactory: {fileID: 11400000, guid: c3924f7c72d49db40a30afa54cc0ec1c, type: 2}
   myHand: {fileID: 1414469246296982122}
+  myBloodParticle: {fileID: 1354178961012427149}
+  mySpiritOutParticle: {fileID: 8389888221403150345}
+  myAudioDeathScreamSource: {fileID: -3977800268595972432}
+  myAccelerationTrail: {fileID: 8204524452974387019}
+  myRetreatSpeed: 0.1
 --- !u!114 &7284158996133849139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,6 +2185,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1936226195794356512, guid: b69040c2bd7ad9a41aacebce0bc6f3d2, type: 3}
   m_PrefabInstance: {fileID: 2375773632971978178}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &8389888221403150345 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6095252019285544395, guid: b69040c2bd7ad9a41aacebce0bc6f3d2, type: 3}
+  m_PrefabInstance: {fileID: 2375773632971978178}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2445790244196324740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2240,6 +2250,11 @@ PrefabInstance:
 --- !u!4 &1623562246699005616 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3997292141361144628, guid: fb272565f39adf74eb408951745f4fcc, type: 3}
+  m_PrefabInstance: {fileID: 2445790244196324740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &8204524452974387019 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 5777382480453257935, guid: fb272565f39adf74eb408951745f4fcc, type: 3}
   m_PrefabInstance: {fileID: 2445790244196324740}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2768481156769153939
@@ -2303,6 +2318,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60534ebb343cc374281440384c9fff2c, type: 3}
+--- !u!198 &1354178961012427149 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3792202851130968606, guid: 60534ebb343cc374281440384c9fff2c, type: 3}
+  m_PrefabInstance: {fileID: 2768481156769153939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4322541633595593404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2132276609394921775, guid: 60534ebb343cc374281440384c9fff2c, type: 3}

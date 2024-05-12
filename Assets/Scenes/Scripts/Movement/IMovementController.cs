@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+using System.Collections.Generic;
+
 namespace LearnGame.Movement
 {
     public interface IMovementController

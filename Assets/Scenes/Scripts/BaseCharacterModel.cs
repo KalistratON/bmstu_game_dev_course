@@ -1,9 +1,12 @@
+using LearnGame.Bonus;
 using LearnGame.Movement;
 using LearnGame.Shooting;
+using LearnGame.Property;
 
 using UnityEngine;
 
 using System;
+
 
 namespace LearnGame {
 
@@ -11,9 +14,13 @@ namespace LearnGame {
     public class BaseCharacterModel
     {
         public event Action Dead;
+        public event Action AccelerationFinished;
 
+        //animation related fields
+        public event Action<float> AnimationDirection;
 
         public bool IsShooting => myShootingController.HasTarget;
+        public bool HasWeapon => myShootingController.HasWeapon;
 
 
         public float Health { get; private set; } = 10.0f;
@@ -46,8 +53,13 @@ namespace LearnGame {
                 aLookDirection = (myShootingController.GetTargetPosition - Transform.Position).normalized;
             }
 
+            myCharacterMovementController.Translate (theDirection);
+            
             Transform.Position += myCharacterMovementController.Translate (theDirection);
             Transform.Rotation = myCharacterMovementController.Rotate (Transform.Rotation, aLookDirection);
+
+            float anAnimDir = Vector3.Dot (theDirection, aLookDirection);
+            AnimationDirection?.Invoke (anAnimDir /= Mathf.Abs (anAnimDir));
         }
 
         public void Damage (float theDamage)
@@ -67,6 +79,70 @@ namespace LearnGame {
         public void SetWeapon (WeaponModel theWeapon)
         {
             myShootingController.SetWeapon (theWeapon);
+        }
+
+        public void AddBonus (Bonus.Bonus theBonus)
+        {
+            theBonus.OnBonusDestory += EraseBonus;
+
+            if (myCharacterMovementController as CharacterMovementController == null)
+            {
+                return;
+            }
+
+            var aMovementController = myCharacterMovementController as CharacterMovementController;
+
+            if ((theBonus as Acceleration) != null)
+            {
+                var aBonus = theBonus as Acceleration;
+                aMovementController.SpeedScale *= aBonus.myAccelerationDescription.SpeedMultiplier;
+            }
+        }
+
+        public void SetSpeedScale (float theScale)
+        {
+            if (myCharacterMovementController as CharacterMovementController == null)
+            {
+                return;
+            }
+
+            var aMovementController = myCharacterMovementController as CharacterMovementController;
+            aMovementController.SpeedScale *= theScale;
+        }
+
+        public void EraseBonus (Bonus.Bonus theBonus)
+        {
+            theBonus.OnBonusDestory -= EraseBonus;
+
+            if (myCharacterMovementController as CharacterMovementController == null)
+            {
+                return;
+            }
+
+            var aMovementController = myCharacterMovementController as CharacterMovementController;
+
+            if ((theBonus as Acceleration) != null)
+            {
+                var aBonus = theBonus as Acceleration;
+                aMovementController.SpeedScale /= aBonus.myAccelerationDescription.SpeedMultiplier;
+
+                AccelerationFinished?.Invoke();
+            }
+        }
+
+        public void AddProperty (Property.Property theProperty)
+        {
+            if (myCharacterMovementController as CharacterMovementController == null)
+            {
+                return;
+            }
+
+            var aMovementController = myCharacterMovementController as CharacterMovementController;
+
+            if ((theProperty as Retreating) != null) {
+                var aBonus = theProperty as Retreating;
+                aMovementController.SpeedAdd += aBonus.RetreatingSpeed;
+            }
         }
     }
 

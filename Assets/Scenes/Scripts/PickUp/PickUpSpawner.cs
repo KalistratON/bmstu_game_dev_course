@@ -28,7 +28,7 @@ namespace LearnGame.PickUp
         // Use this for initialization
         protected void Awake()
         {
-            mySpawnIntervalSeconds = Random.Range(mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds);
+            mySpawnIntervalSeconds = Random.Range (mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds);
         }
 
         // Update is called once per frame
@@ -40,14 +40,14 @@ namespace LearnGame.PickUp
                 if (myCurrentSpawnTimerSeconds > mySpawnIntervalSeconds)
                 {
                     myCurrentSpawnTimerSeconds = 0f;
-                    mySpawnIntervalSeconds = Random.Range(mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds);
+                    mySpawnIntervalSeconds = Random.Range (mySpawnMinIntervalSeconds, mySpawnMaxIntervalSeconds);
                     myCurrentCount++;
 
                     var randomPointInsideRange = Random.insideUnitCircle * myRange;
                     var randomPosition = new Vector3(randomPointInsideRange.x, 0, randomPointInsideRange.y);
                     randomPosition += transform.position;
 
-                    var pickUp = Instantiate(myPickUpPrefab, randomPosition, Quaternion.identity, transform);
+                    var pickUp = Instantiate (myPickUpPrefab, randomPosition, Quaternion.identity, transform);
                     pickUp.OnPickedUp += OnItemPickedUp;
                 }
             }

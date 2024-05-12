@@ -25,7 +25,7 @@ namespace LearnGame.Enemy
 
             var aNavMesher = new NavMesher (transform);
             myTarget = new EnemyTarget (
-                            transform, aPlayer, myViewRadius, GetComponent<EnemyCharacterView>().Model.Health);
+                            transform, aPlayer, myViewRadius, GetComponent<EnemyCharacterView>());
 
             myStateMachine = new EnemyStateMachine(
                                 anEnemyDirectionController, aNavMesher, myTarget, myCriticalHealthPercent, myRetreatChancePercent);
@@ -34,6 +34,14 @@ namespace LearnGame.Enemy
         protected void Update()
         {
             var anEnemy = GetComponent<EnemyCharacterView>();
+
+            if (anEnemy == null || anEnemy.Model == null)
+            {
+                return;
+            }
+
+            myTarget.CurrentHealth = anEnemy.Model.Health;
+            myTarget.IsWeaponTaken = anEnemy.Model.HasWeapon;
             myTarget.FindClosest();
             myStateMachine.Update();
         }

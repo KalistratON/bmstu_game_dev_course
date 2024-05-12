@@ -1,11 +1,12 @@
+using LearnGame.Bonus;
 using LearnGame.Movement;
 using LearnGame.Shooting;
 using LearnGame.PickUp;
-using LearnGame.Enemy;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
+using System.Collections.Generic;
+using System;
 
 
 namespace LearnGame {
@@ -21,10 +22,22 @@ namespace LearnGame {
         [SerializeField]
         private Transform myHand;
 
+        [SerializeField]
+        private ParticleSystem myBloodParticle;
+
+        [SerializeField]
+        private ParticleSystem mySpiritOutParticle;
+
+        [SerializeField]
+        private AudioSource myAudioDeathScreamSource;
+
+        [SerializeField]
+        private TrailRenderer myAccelerationTrail;
+
         private Animator myAnimator;
         private CharacterController myCharacterController;
         private WeaponView myWeaponView;
-        private IMovementDirectionSource myMovementDirSource;
+        protected IMovementDirectionSource myMovementDirSource;
 
         public BaseCharacterModel Model { get; private set; }
 
@@ -35,6 +48,8 @@ namespace LearnGame {
             myCharacterController = GetComponent<CharacterController>();
 
             SetWeapon (myWeaponFactory);
+
+            myAccelerationTrail.gameObject.SetActive (false);
         }
 
         public void Initialize (BaseCharacterModel theModel)
@@ -42,10 +57,25 @@ namespace LearnGame {
             Model = theModel;
             Model.Initialize (transform.position, transform.rotation);
             Model.Dead += OnDeath;
+
+            Model.AccelerationFinished += FinishAcceleration;
+            Model.AnimationDirection += SetAnimationDirection;
         }
 
-        protected virtual void Update()
+        protected virtual void LateUpdate()
         {
+            if (IsDeathAnimationFinished())
+            {
+                Dead?.Invoke (this);
+                Destroy (gameObject);
+                return;
+            }
+
+            if (Model == null)
+            {
+                return;
+            }
+
             Model.Move (myMovementDirSource.MovementDirection);
 
             Model.TryShoot (myWeaponView.myBulletSpawnPos.position);
@@ -65,15 +95,20 @@ namespace LearnGame {
             if (Model != null)
             {
                 Model.Dead -= OnDeath;
+                Model.AccelerationFinished -= FinishAcceleration;
+                Model.AnimationDirection -= SetAnimationDirection;
             }
         }
 
         protected void OnTriggerEnter (Collider other)
         {
-            if (LayerUtils.IsBullet(other.gameObject))
+            if (LayerUtils.IsBullet (other.gameObject))
             {
                 var bullet = other.gameObject.GetComponent<Bullet>();
-                Model.Damage (bullet.Damage);
+                Model?.Damage (bullet.Damage);
+
+                myBloodParticle.Play();
+
                 Destroy(other.gameObject);
             }
             else if (LayerUtils.IsPickUp(other.gameObject))
@@ -86,7 +121,7 @@ namespace LearnGame {
                 else if (other.gameObject.GetComponent<PickUpAcceleration>())
                 {
                     var pickUp = other.gameObject.GetComponent<PickUpAcceleration>();
-                    pickUp.PickUp(this);
+                    pickUp.PickUp (this);
                 }
                 Destroy(other.gameObject);
             }
@@ -103,10 +138,50 @@ namespace LearnGame {
             Model.SetWeapon (myWeaponView.Model);
         }
 
+        public void AddBonus (BonusFactory theBonusFactory)
+        {
+            var aBonus = theBonusFactory.Create (transform);
+            if (aBonus as Acceleration != null)
+            {
+                myAccelerationTrail.gameObject.SetActive (true);
+            }
+
+            var aMesh = aBonus.GetComponent<MeshRenderer>();
+            if (aMesh != null)
+            {
+                Destroy (aMesh);
+            }
+
+            Model.AddBonus (aBonus);
+        }
+
+        private bool IsDeathAnimationFinished()
+        {
+            return myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Demise") && 
+                   myAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9999999;
+        }
+
         private void OnDeath()
         {
-            Dead?.Invoke (this);
-            Destroy (gameObject);
+            Model = null;
+
+            mySpiritOutParticle.Play();
+            myAudioDeathScreamSource.Play();
+
+            myAnimator.SetTrigger("Dead");
+        }
+
+        private void FinishAcceleration()
+        {
+            myAccelerationTrail.gameObject.SetActive (false);
+        }
+
+        private void SetAnimationDirection (float theAnimDir)
+        {
+            if (theAnimDir == 1.0f)
+            {
+                myAnimator.SetFloat ("DirectionOfAnim", theAnimDir);
+            }
         }
     }
 

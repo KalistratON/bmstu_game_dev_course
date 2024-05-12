@@ -1,5 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+
+using System;
 
 namespace LearnGame.Shooting
 {
@@ -20,7 +21,5 @@ namespace LearnGame.Shooting
 
         [field: SerializeField]
         public float BulletSpeed { get; private set; } = 10f;
-
-        
     }
 }

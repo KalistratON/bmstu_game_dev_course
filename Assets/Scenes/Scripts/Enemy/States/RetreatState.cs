@@ -1,9 +1,6 @@
-﻿using LearnGame.FSM;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LearnGame.Property;
+using LearnGame.FSM;
+
 using UnityEngine;
 
 namespace LearnGame.Enemy.States
@@ -23,8 +20,9 @@ namespace LearnGame.Enemy.States
         public override void Execute()
         {
             Vector3 targetPosition = myTarget.Closest.transform.position;
-            myEnemyDirectionController.UpdateMovementDirection(targetPosition, false);
-            myEnemyDirectionController.IsRetreating = true;
+            myEnemyDirectionController.UpdateMovementDirection (targetPosition, false);
+
+            myTarget.mySelf.Retreat();
         }
     }
 }

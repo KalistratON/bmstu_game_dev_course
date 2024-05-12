@@ -118,8 +118,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab0766db667ad3469c1a025b1d3b3e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Scale>k__BackingField: 2
-  <Seconds>k__BackingField: 10
+  myAccelerationDescription:
+    <RemainingTimeSec>k__BackingField: 5
+    <SpeedMultiplier>k__BackingField: 5
+    <SpeedUpDuringSec>k__BackingField: 5
 --- !u!1 &8496049702130966689
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b290ca1849983140b4e61b9c5884b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: {fileID: 3317507600186961118, guid: 974389591d421194ca960c1f4d4a625b, type: 3}
+  myBonusFactory: {fileID: 11400000, guid: 5b796534addc91f40a39ebc08822ecf1, type: 2}
 --- !u!65 &530930034512650490
 BoxCollider:
   m_ObjectHideFlags: 0

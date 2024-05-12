@@ -1,13 +1,25 @@
 ﻿using UnityEngine;
 
+using System;
+
 namespace LearnGame.Movement
 { 
 
     public class PlayerMovementDirectionController : MonoBehaviour, IMovementDirectionSource
     {
-        private UnityEngine.Camera myCamera;
+        public event Action<float> OnRunning;
+
+
+        [SerializeField]
+        private float myRunSpeedMulty = 1.0f;
+
+
         public Vector3 MovementDirection { get; private set; }
-        public bool IsRunning { get; private set; }
+        public bool IsRunning { get; private set; } = false;
+
+
+        private UnityEngine.Camera myCamera;
+
 
         protected void Awake()
         {
@@ -16,16 +28,20 @@ namespace LearnGame.Movement
 
         protected void Update()
         {
-            var hor = Input.GetAxis("Horizontal");  
-            var ver = Input.GetAxis("Vertical");
+            var aHor = Input.GetAxis ("Horizontal");  
+            var aVer = Input.GetAxis ("Vertical");
 
-            IsRunning = Input.GetKey(KeyCode.Space);
+            if (IsRunning != Input.GetKey (KeyCode.Space))
+            {
+                IsRunning = Input.GetKey (KeyCode.Space);
+                OnRunning?.Invoke (IsRunning ? myRunSpeedMulty : 1/myRunSpeedMulty);
+            }
 
-            var direction = new Vector3(hor, 0, ver);
-            direction = myCamera.transform.rotation * direction;
-            direction.y = 0;
+            var aDirection = new Vector3 (aHor, 0, aVer);
+            aDirection = myCamera.transform.rotation * aDirection;
+            aDirection.y = 0;
 
-            MovementDirection = direction.normalized;
+            MovementDirection = aDirection.normalized;
         }
     }
 

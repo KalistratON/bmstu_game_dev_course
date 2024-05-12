@@ -14,6 +14,7 @@ namespace LearnGame.Shooting {
         private float myNextShootTimeSec;
 
         public bool HasTarget => myTarget != null;
+        public bool HasWeapon => myWeapon != null;
         public Vector3 GetTargetPosition => myTarget.Transform.Position;
 
         public ShootingController (ITimer theTimer, IShootingTarget theShootingTarget)

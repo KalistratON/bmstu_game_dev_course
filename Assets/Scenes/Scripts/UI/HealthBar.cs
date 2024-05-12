@@ -15,21 +15,25 @@ namespace LearnGame
 
         private void Start()
         {
-            if (!myCharacter)
+            myHealthBar = GetComponent<Image>();
+
+            if (myCharacter == null || myCharacter.Model == null)
             {
+                myHealthBar.fillAmount = 0.0f;
                 return;
             }
             myMaxHealth = myCharacter.Model.Health;
-            myHealthBar = GetComponent<Image>();
             myHealthBar.fillAmount = 1.0f;
         }
 
         private void Update()
         {
-            if (myCharacter == null)
+            if (myCharacter == null || myCharacter.Model == null)
             {
+                myHealthBar.fillAmount = 0.0f;
                 return;
             }
+
             myHealthBar.fillAmount = myCharacter.Model.Health / myMaxHealth;
             myHealthBar.color = Color.green * myHealthBar.fillAmount + Color.red * (1.0f - myHealthBar.fillAmount);
         }

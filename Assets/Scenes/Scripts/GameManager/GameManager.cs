@@ -5,6 +5,7 @@ using LearnGame.Timer;
 using UnityEngine;
 
 using System.Collections.Generic;
+using System.Linq;
 using System;
 
 
@@ -18,19 +19,15 @@ namespace LearnGame {
         public event Action Win;
         public event Action Lose;
 
-        [SerializeField]
         private CharacterCompositionRoot myPlayer;
-
-        [SerializeField]
         private List<CharacterCompositionRoot> myEnemies;
 
         public PlayerCharacterView Player { get; private set; }
         public List<EnemyCharacterView> Enemies { get; private set; }
-        public List<EnemyCharacterView> EnemyPointers { get; private set; }
 
         public TimerUI Timer { get; private set; }
 
-        protected void Awake()
+        protected void Start()
         {
             if (myInstance == null)
             {
@@ -42,6 +39,16 @@ namespace LearnGame {
                 return;
             }
             ITimer aTimer = new UnityTimer();
+            myPlayer = FindObjectOfType<PlayerCharacterView>().GetComponentInChildren<CharacterCompositionRoot>();            
+            
+            Enemies = FindObjectsOfType<EnemyCharacterView>().ToList();
+            myEnemies = new List<CharacterCompositionRoot>(Enemies.Count);
+            foreach (var anEnemy in Enemies)
+            {
+                var anEnemyCompositionRoot = anEnemy.GetComponentInChildren<CharacterCompositionRoot>();
+                myEnemies.Add (anEnemyCompositionRoot);
+            }
+
             Player = (PlayerCharacterView) myPlayer.Compose (aTimer);
             Enemies = new List<EnemyCharacterView>(myEnemies.Count);
             foreach (var anEnemyRoot in myEnemies)
@@ -81,7 +88,7 @@ namespace LearnGame {
         private void OnEnemyDead (BaseCharacterView theSender)
         {
             var enemy = theSender as EnemyCharacterView;
-            Enemies.Remove(enemy);
+            Enemies.Remove (enemy);
             enemy.Dead -= OnEnemyDead;
 
             if (Enemies.Count == 0)
