@@ -12,7 +12,7 @@ namespace LearnGame.Enemy {
 
         public void Retreat()
         {
-            if (!IsRetreating) { 
+            if (Model != null && !IsRetreating) { 
                 Model.AddProperty (new Retreating (RetreatSpeed));
                 IsRetreating = true;
             }

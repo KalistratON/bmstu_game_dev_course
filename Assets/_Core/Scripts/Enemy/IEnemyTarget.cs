@@ -6,10 +6,10 @@ namespace LearnGame.Enemy
     {
         GameObject Closest { get; }
         float MaxHealth { get; }
-        float CurrentHealth { get; }
 
         void Retreat();
         void FindClosest();
+        float CurrentHealth();
         float DistanceToClosestFromAgent();
     }
 }

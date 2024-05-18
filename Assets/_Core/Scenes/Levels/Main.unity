@@ -980,6 +980,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5672801304529510876, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7094380875281137276, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7643251479640468585, guid: f25f43a1794692d4b9a58ef365ed08cf, type: 3}
       propertyPath: m_Enabled
       value: 0

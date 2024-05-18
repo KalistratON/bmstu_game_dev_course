@@ -1,3 +1,5 @@
+using LearnGame.Timer;
+
 using UnityEngine;
 
 namespace LearnGame.UI
@@ -16,10 +18,11 @@ namespace LearnGame.UI
             gameObject.SetActive (false);
         }
 
-        private void ShowPanel()
+        private void ShowPanel (ITimer theTimer)
         {
             gameObject.SetActive (true);
             myAudioSource.Play();
+            theTimer.SetTimeScale (0.0f);
         }
     }
 }

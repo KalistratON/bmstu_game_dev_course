@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 using System;
 
@@ -33,6 +36,7 @@ namespace LearnGame
             }
         }
 
+#if UNITY_EDITOR
         protected void OnDrawGizmos()
         {
             var cashedColor = Handles.color;
@@ -40,5 +44,6 @@ namespace LearnGame
             Handles.DrawWireDisc(transform.position, Vector3.up, myRange);
             Handles.color = cashedColor;
         }
+#endif
     }
 }

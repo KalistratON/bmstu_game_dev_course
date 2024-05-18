@@ -17,8 +17,8 @@ namespace LearnGame {
         public static GameManager myInstance { get; private set; }
 
 
-        public event Action Win;
-        public event Action Lose;
+        public event Action <ITimer> Win;
+        public event Action <ITimer> Lose;
 
 
         public PlayerCharacterView Player { get; private set; }
@@ -29,6 +29,7 @@ namespace LearnGame {
 
 
         public bool IsPlayerExist => Player != null;
+        private ITimer myTimer;
 
 
         private void Awake()
@@ -48,8 +49,8 @@ namespace LearnGame {
 
         protected void Start()
         {
-            ITimer aTimer = new UnityTimer();
-            Enemies = CompositionRootFactory.InitEnemies (aTimer);
+            myTimer = new UnityTimer();
+            Enemies = CompositionRootFactory.InitEnemies (myTimer);
 
             Player.Dead += OnPlayerDead;
             foreach(var enemy in Enemies)
@@ -58,7 +59,7 @@ namespace LearnGame {
             }
 
             Timer = FindObjectOfType<TimerUIView>();
-            Timer.Initialize (aTimer);
+            Timer.Initialize (myTimer);
             Timer.myTimerUIModel.TimerEnd += PlayerLose;
         }
 
@@ -82,7 +83,7 @@ namespace LearnGame {
         private void OnPlayerDead (BaseCharacterView theSender)
         {
             Player.Dead -= OnPlayerDead;
-            Lose?.Invoke();
+            Lose?.Invoke (myTimer);
         }
 
         private void OnEnemyDead (BaseCharacterView theSender)
@@ -93,7 +94,7 @@ namespace LearnGame {
 
             if (Enemies.Count == 0)
             {
-                Win?.Invoke();
+                Win?.Invoke (myTimer);
 
                 Timer.myTimerUIModel.TimerEnd -= PlayerLose;
             }
@@ -102,13 +103,13 @@ namespace LearnGame {
         private void PlayerLose()
         {
             Timer.myTimerUIModel.TimerEnd -= PlayerLose;
-            Lose?.Invoke();
+            Lose?.Invoke (myTimer);
         }
 
         public void InitPlayer()
         {
-            ITimer aTimer = new UnityTimer();
-            Player = CompositionRootFactory.InitPlayer (aTimer);
+            myTimer = new UnityTimer();
+            Player = CompositionRootFactory.InitPlayer (myTimer);
         }
     }
 }

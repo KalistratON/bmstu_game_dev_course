@@ -19,7 +19,7 @@ namespace LearnGame.Enemy.States
             var retreatState = new RetreatState (target, enemyDirectionController);
 
             Func<bool> retreatFunc = () => {
-                return target.CurrentHealth / target.MaxHealth <= criticalPercent &&
+                return target.CurrentHealth() / target.MaxHealth <= criticalPercent &&
                        UnityEngine.Random.Range(0, 1) <= retreatChancePercent;
             };
 

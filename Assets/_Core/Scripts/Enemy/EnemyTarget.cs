@@ -7,9 +7,6 @@ namespace LearnGame.Enemy
         public GameObject Closest { get; private set; }
         public float MaxHealth { get; private set; }
 
-        public float CurrentHealth => mySelf.Model.Health;
-        public bool IsWeaponTaken =>  mySelf.Model.HasWeapon;
-
         private readonly PlayerCharacterView myPlayer;
         private readonly Transform myAgentTransform;
         private readonly float myViewRadius;
@@ -27,6 +24,21 @@ namespace LearnGame.Enemy
             MaxHealth = theEnemy.Model.Health;
         }
 
+        public float CurrentHealth()
+        {
+            if (mySelf == null || mySelf.Model == null)
+            {
+                return 0.0f;
+            }
+
+            return mySelf.Model.Health;
+        }
+
+        public bool IsWeaponTaken()
+        {
+            return mySelf == null || mySelf.Model == null ? false : mySelf.Model.HasWeapon;
+        }
+
         public void FindClosest()
         {
             if (mySelf == null || mySelf.Model == null)
@@ -36,7 +48,7 @@ namespace LearnGame.Enemy
 
             float minDistance = float.MaxValue;
 
-            var count = FindAllTargets (IsWeaponTaken ? LayerUtils.CharacterMask : LayerUtils.PickUpMask | LayerUtils.CharacterMask);
+            var count = FindAllTargets (IsWeaponTaken() ? LayerUtils.CharacterMask : LayerUtils.PickUpMask | LayerUtils.CharacterMask);
 
             for (int i = 0; i < count; ++i)
             {

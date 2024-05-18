@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
-using System.Collections;
+#endif
 
 namespace LearnGame.PickUp
 { 
@@ -58,7 +60,7 @@ namespace LearnGame.PickUp
             myCurrentCount--;
             pickedUpItem.OnPickedUp -= OnItemPickedUp;
         }
-
+#if UNITY_EDITOR
         protected void OnDrawGizmos()
         {
             var cashedColor = Handles.color;
@@ -66,5 +68,6 @@ namespace LearnGame.PickUp
             Handles.DrawWireDisc(transform.position, Vector3.up, myRange);
             Handles.color = cashedColor;
         }
+#endif
     }
 }

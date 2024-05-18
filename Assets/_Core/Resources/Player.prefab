@@ -387,11 +387,11 @@ GameObject:
   - component: {fileID: 5343346935072540605}
   - component: {fileID: 5302996346314801371}
   - component: {fileID: 7643251479640468585}
-  - component: {fileID: 4102324119418458333}
   - component: {fileID: 8766000691216051690}
   - component: {fileID: 1280455468045960397}
   - component: {fileID: -5209077291725718173}
   - component: {fileID: 9067611125390063319}
+  - component: {fileID: 7094380875281137276}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -485,19 +485,6 @@ MonoBehaviour:
   mySpiritOutParticle: {fileID: 551863791672260240}
   myAudioDeathScreamSource: {fileID: -5209077291725718173}
   myAccelerationTrail: {fileID: 4393311036314662795}
---- !u!114 &4102324119418458333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2574153865266352386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ad9a7bf0f88fec45a4a940f97250aea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myRunSpeedMulty: 1.5
 --- !u!143 &8766000691216051690
 CharacterController:
   m_ObjectHideFlags: 0
@@ -655,6 +642,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myCharacterConfig: {fileID: 11400000, guid: fdb8f1a97a1f2a94a972f01b1d3a19b1, type: 2}
   myCharacterView: {fileID: 7643251479640468585}
+--- !u!114 &7094380875281137276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574153865266352386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad9a7bf0f88fec45a4a940f97250aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRunSpeedMulty: 1
 --- !u!1 &2692910400531142474
 GameObject:
   m_ObjectHideFlags: 0
